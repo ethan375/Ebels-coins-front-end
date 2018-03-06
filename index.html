@@ -9,5 +9,24 @@
 </head>
 <body ng-controller="StoreController as str">
 
+  <header>
+  <section>
+    <form ng-submit="str.login" class="login">
+      Username:<input type="text"> <br />
+      Password:<input type="text"> <br />
+      <button>Login</button>
+    </form>
+  </section>
+    <nav class="nav">
+      <button ng-click="">Store</button>
+      <button ng-click="switch view">forum</button>
+      <button ng-click="switch view">info repository</button>
+    </nav>
+  </header>
+
+  <main ng-view>
+    
+  </main>
+
 </body>
 </html>
