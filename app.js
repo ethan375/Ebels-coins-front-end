@@ -17,7 +17,27 @@ Coinsite.config(['$routeProvider', function(routeProvider) {
 }]);
 
 app.controller("StoreController", ['$http',function ($http){
+  this.username = '';
+  this.password = '';
+  controller = this;
+  this.login = function() {
+    const makeAjaxCall = $http({
+      method: 'POST',
+      url: 'localhost'
+    })
+  }
 
-
+  this.getComments = function() {
+    const makeAjaxCall = $http({
+      method:'GET',
+      url: 'http://localhost:9292/comments'
+    }).then(function(res) {
+      // console.log(res.data);
+      controller.comments = res.data;
+    }, function(err) {
+      console.error(err);
+    })
+  }
+  this.getComments() //runs the function immediately
 
 }]);

@@ -1,0 +1,28 @@
+body{
+  margin: 0 auto;
+}
+ul{
+  margin: 0 auto;
+}
+li{
+  margin-top: 20px;
+  border: 1px solid blue;
+  text-align: center;
+  margin-right: 30px
+}
+
+.login{
+  margin-left: 1000px;
+  border: 1px solid blue; 
+}
+
+.nav {
+  margin-left:  500px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.new-comment{
+  margin-left: 500px;
+  margin-bottom: 50px;
+}
