@@ -9,7 +9,7 @@ app.config(['$routeProvider', function($routeProvider) {
   })
   .when('/forum', {
     templateUrl: './views/forum.html',
-    controller: "ForumController"
+    controller: "ForumController as frm"
   }).when('/info', {
     templateUrl: './views/info.html',
     controller: "InfoController"
@@ -28,12 +28,11 @@ app.controller("ForumController", ['$http', function ($http){
   }
 
   this.getComments = function() {
-    console.log("this is the start of the ajax call")
     const makeAjaxCall = $http({
       method:'GET',
       url: 'http://localhost:9292/comments'
     }).then(function(res) {
-      console.log(res.data);
+      // console.log(res.data);
       controller.comments = res.data;
     }, function(err) {
       console.error(err);
