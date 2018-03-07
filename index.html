@@ -1,29 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Coinsite">
 <head>
   <meta charset="utf-8">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <script type="text/javascript" src="./lib/angular-route.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <link rel="stylesheet" type="text/css" href="./style.css">
   <title>Ebel's Traveling Coins</title>
 </head>
-<body ng-controller="StoreController as str">
+<body>
 
-  <header>
-  <section>
-    <form ng-submit="str.login" class="login">
-      Username:<input type="text"> <br />
-      Password:<input type="text"> <br />
-      <button>Login</button>
-    </form>
-  </section>
-    <nav class="nav">
-      <button ng-click="">Store</button>
-      <button ng-click="switch view">forum</button>
-      <button ng-click="switch view">info repository</button>
-    </nav>
-  </header>
+ <ng-include src="'header.html'"></ng-include>
 
   <main ng-view>
     

@@ -1,12 +1,14 @@
+<section ng-controller="FormController as frm">
 <form ng-submit="str.newPost()" class="new-comment">
   Enter new comment below: <br />
   <input type="text"> <br />
   <button>Post</button>
 </form>
 <ul style="list-style-type: none" class="comments">
-  <li ng-repeat="comment in str.comments">
+  <li ng-repeat="comment in frm.comments">
     {{console.log(comments)}}
     <span>{{comment.username}}</span>
     <p>{{comment.body}}</p>
   </li>
 </ul>
+</section>

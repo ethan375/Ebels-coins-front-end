@@ -1,22 +1,22 @@
-console.log("files connected");
-const app = angular.module("Coinsite", ['ngRoute']);
+// console.log("files connected");
+const app = angular.module('Coinsite', ['ngRoute']);
 
-Coinsite.config(['$routeProvider', function(routeProvider) {
+app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when('/store', {
-    templateUrl: './views/store'
+    templateUrl: './views/store.html',
+    controller: "StoreController" 
   })
   .when('/forum', {
-    templateUrl: './views/forum'
+    templateUrl: './views/forum.html',
+    controller: "ForumController"
   }).when('/info', {
-    templateUrl: './views/info',
-    // this is where were going to specify the controller for the view
-  }).otherwise({
-    redirectTo: '/store'
+    templateUrl: './views/info.html',
+    controller: "InfoController"
   })
 }]);
 
-app.controller("StoreController", ['$http',function ($http){
+app.controller("ForumController", ['$http', function ($http){
   this.username = '';
   this.password = '';
   controller = this;
@@ -28,11 +28,12 @@ app.controller("StoreController", ['$http',function ($http){
   }
 
   this.getComments = function() {
+    console.log("this is the start of the ajax call")
     const makeAjaxCall = $http({
       method:'GET',
       url: 'http://localhost:9292/comments'
     }).then(function(res) {
-      // console.log(res.data);
+      console.log(res.data);
       controller.comments = res.data;
     }, function(err) {
       console.error(err);
@@ -40,4 +41,14 @@ app.controller("StoreController", ['$http',function ($http){
   }
   this.getComments() //runs the function immediately
 
+}]); //end forum controller
+
+
+app.controller("StoreController", ['$http', function($http) {
+  this.done = "there will be an ajax call made when this view is loaded to get all of the items I have for sale on my ebay store"
+}]);
+
+
+app.controller("InfoController", ['$http', function($http) {
+  this.done = "we gotta make some 'advanced' sql queries so that we can get the right coins for every section"
 }]);
