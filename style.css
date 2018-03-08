@@ -26,3 +26,12 @@ li{
   margin-left: 500px;
   margin-bottom: 50px;
 }
+
+.flexcontainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.coin{
+ flex-grow: 100;
+}
