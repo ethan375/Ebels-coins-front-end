@@ -13,6 +13,7 @@ li{
 
 .login{
   margin-left: 1000px;
+  margin-right: 20px;
   border: 1px solid blue; 
 }
 
@@ -34,4 +35,10 @@ li{
 
 .coin{
  flex-grow: 100;
+}
+
+.register {
+  margin-left: 500px;
+  margin-right: 500px;
+  border: 1px solid blue;
 }
