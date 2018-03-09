@@ -1,15 +1,15 @@
 <header>
-<section ng-controller="StoreController as str">
-  <form ng-submit="str.login" class="login">
+<section ng-controller="SessionController as ses">
+  <form ng-submit="ses.login()" class="login">
     Username:<input type="text"> <br />
     Password:<input type="text"> <br />
     Not a member? Register <a href="/#!/register">Here</a>
-    <button ng-click="">Login</button>
+    <button>Login</button>
   </form>
 </section>
 <nav class="nav">
-  <a href="http://169.254.48.252:8080/#!/store">Store</a>
-  <a href="http://169.254.48.252:8080/#!/forum">Forum</a>
-  <a href="http://169.254.48.252:8080/#!/info">Info Repository</a>
+  <a href="/#!/store">Store</a>
+  <a href="/#!/forum">Forum</a>
+  <a href="/#!/info">Info Repository</a>
 </nav>
 </header>

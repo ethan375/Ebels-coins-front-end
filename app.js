@@ -1,7 +1,6 @@
 // console.log("files connected");
 const app = angular.module('Coinsite', ['ngRoute']);
 
-// app.config(['$httpProvider'function($httpProvider) {}])
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -17,7 +16,7 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: "InfoController as inf"
   }).when('/register', {
     templateUrl: './views/register.html',
-    controller: 'RegisterController as rgs'
+    controller: 'SessionController as ses'
   }).when('/halfcent', {
     templateUrl: './views/'
   }).when('/largeCent', {
@@ -61,26 +60,18 @@ app.config(['$routeProvider', function($routeProvider) {
   })
 }]);
 
+
+
+
 app.controller("ForumController", ['$http', function ($http){
   this.username = '';
   this.password = '';
   controller = this;
-  this.login = function() {
-    const makeAjaxCall = $http({
-      method: 'POST',
-      url: 'http://localhost:9292/users/login'
-    }).then(function(res) {
-      console.log(res)
-    }, function(err) {
-      console.error(err)
-    })
-  }
 
   this.getComments = function() {
     const makeAjaxCall = $http({
       method:'GET',
-      url: 'http://localhost:9292/comments',
-
+      url: 'http://localhost:9292/comments'
     }).then(function(res) {
       // console.log(res.data);
       controller.comments = res.data;
@@ -90,7 +81,20 @@ app.controller("ForumController", ['$http', function ($http){
   }
   this.getComments() //runs the function immediately
 
+  this.newPost = function() {
+    const makePostRequest = $http({
+      method: 'POST',
+      url: 'http://localhost:9292/comments'
+    }).then(function(res) {
+      console.log(res);
+    }, function(err) {
+      console.error(err);
+    })
+  }
+
 }]); //end forum controller
+
+
 
 
 app.controller("StoreController", ['$http', function($http) {
@@ -102,7 +106,7 @@ app.controller("StoreController", ['$http', function($http) {
     method: 'GET',
     url: 'https://api.ebay.com/buy/browse/v1/item_summary/search?category_ids=108765&q=Beatles&filter=price:[200..500]&filter=priceCurrency:USD&limit=10',
     headers:{
-      'Authorization': 'Bearer v^1.1#i^1#r^0#f^0#p^3#I^3#t^H4sIAAAAAAAAAOVXW2wUVRjutttiAy2RS1GCsAyWcMnsnrl2dsKu2d6ksbQrW8CWYHNm5kw7dHZmnTPbdnkwpSYYARMIJCRGa6OSyIMVjFoND0TjBQIxSEwUYjAxJOLlQQhRAwie2bbLtkagLQ9N3EyymXP+6/d/55/zg76S0jW71u/6s8w3q3CwD/QV+nzMbFBaUry2vKhwcXEByBPwDfY93ufvL7q8DsOkmZI3IpyyLYwCvUnTwnJ2MUKlHUu2ITawbMEkwrKryonYhkaZDQI55diurdomFWiojVC8xGoiJyEJcLzCKxpZtcZsttgRSkAa0AXAIMhzrIrINsZp1GBhF1puhGIBI9GAo4HUwjIyALLABKUqsY0KbEYONmyLiAQBFc1GK2d1nbxQ7x4pxBg5LjFCRRti9YnmWENtXVPLulCeregoDAkXumk8/q3G1lBgMzTT6O5ucFZaTqRVFWFMhaIjHsYblWNjwUwh/CzSrMbriJN4lkM8edgHAmW97SShe/c4vBVDo/WsqIws13Az90KUoKFsR6o7+tZETDTUBry/p9PQNHQDORGqrjrWuilRt5EKJOJxx+42NKR5mTKCILCCWMWEqShSkIldB3Yj07A6VNuw8Ki7EZujYE/wV2NbmuFBhwNNtluNSOxoPEIEnjyEiFCz1ezEdNeLK1+OyyHJt3mlHall2u20vOqiJIEjkH29dx3GiHGHCg+KGhzHhiVWVYDIoSrES/nU8M76VOkR9SoUi8dDXixIgRk6CZ0u5KZMqCJaJfCmk8gxNJkTdJaTdERrYlin+bCu04qgiTSjIwQQUhQ1LP3/WOK6jqGkXZRjysSNbKoRKqHaKRS3TUPNUBNFsv1nlBe9OEJ1um5KDoV6enqCPVzQdjpCLABM6JkNjQm1EyUhlZM17i1MG1nSem2ZyMtuJkWi6SUEJM6tDirKOVocOm4mgUwP1zH6jostOnH1P5LEXpIzKz1PHxMDMGUEPXYHVTsZsiE5zd5SezbiwP0IhTABKDhyNojloIOgZltmZirKk9AxrG5CKtvJjDn0zvpknOYMTEIHqqqdttyp5DiqOgkNPW3qhml6Z2cqDvPUJxOmBc2Ma6g453JaxI+lUg3azCI+cjuhRXomPdY36fjGWprXdFHloSDSnM4KSIX6tPLWULehonZjhuVupU1zWnnVou6ZUE9y1sfXVBdUTQUMrSCRfIJZMUwrbBVPs6IgibBK4xhNmVbeGzpmWikZhq8CLMOKHADitHKrMQ3SI1oyM+0Ltd7GLtKmlxq5KM6spLxeM9ZqNEZRaSCKIs0zVRodDvOIJrdZ5n5TnrCQd9P611U7NH7gjRZkf0y/7wPQ7ztGZmYQApXMCrC8pGiTv2jOYmy4KGhAPYiNDosMcg4KdqFMChpOYYlv65KjR9rzRuzBbeCR3JBdWsTMzpu4wZI7O8XM3EVlDBmWgcQyAAhMG1hxZ9fPVPgXvLn+Dd/XS99bser8dvbq2t3qmjOpLlCWE/L5igv8/b6C1psVWwbPtm3Zee3kzkXvn6iXPlv43DeB1mpcVrOXOni0adW3KxcOv7N//kc1A4dX767f8dCeD+ecXhaqBtW3bjQ0LpIG3uqb136obzjWjoLvJptW1p688ug58P25UxeG8J4rlTsWC1svHdnXwZ39g/3q8rWbh5b9+PGJ0y+8+GtpWWL5gt+YX4Z/n3ez7sBLgw8fPnY6MmvzDxHf0IWl/p9uv7r/QHmv/Vr1xU3fdbceHr7RL7WeH4B/Ky+vYo//tW/tHDt4i2l8nqr4vPQT5WqFL3T9qYvr5K5tQ3udn18pvz6rfknb65+Gb585lXq761lorq58bGhp7RPldHPX8YFUqHL+pdK56rEv/V88OVK+fwCP9dDg/BAAAA=='
+      'Authorization': 'Bearer v^1.1#i^1#I^3#p^3#f^0#r^0#t^H4sIAAAAAAAAAOVXW2wUVRjutttirUgCDTRQZBmoRHB2z5nZmd0Z2w0rhVBT2m233NXmzMyZdtrZmc3MbNuNSpoG8RIhPoARpKEKqQFNCg8QTDBoTCPxEgRD8MFg4MFK8EFN44WQ4JnthW3VlrY8NHGTyWb+89++73znzDmgs6Bw9Z6Ne/6Y65mT29MJOnM9HlgECgvy1zyal7s4PwdkOXh6Old2ervyfiq3UUJPivXYTpqGjX0dCd2wxYyxgkpZhmgiW7NFAyWwLTqyGI9uqhYZPxCTlumYsqlTvqrKCooJKxIvyRxQJZVnGECsxkjOBrOCCgoKRIoSwmxQUQXojtt2ClcZtoMMh8QDGKYBSwOhAXAiFEQO+sNscAfl24ItWzMN4uIHVCTTrpiJtbJ6nbhVZNvYckgSKlIV3RCvjVZVrq9pKA9k5YoM8xB3kJOyx76tMxXs24L0FJ64jJ3xFuMpWca2TQUiQxXGJhWjI81Mo/0M1ZICBQQAGxIEDEFIeiBUbjCtBHIm7sO1aAqtZlxFbDiak56MUcKG1IJlZ/ithqSoqvS5f3UppGuqhq0Kav3T0e2b4+vrKV88FrPMNk3BiosU8iDEgTAHBSqCnWaEJdzIDhcZyjRM8bgq60xD0VzCbF+N6TyNScd4PC8gixfiVGvUWlHVcbvJ9guN8gd3uBM6NIMpp9lw5xQnCAm+zOvk7I/I4Z4AHpQgGE7ADKfAoMwCOSwE/1UQ7lqfoigi7rxEY7GA2wuWUJpOIKsVO0kdyZiWCb2pBLY0RWQ5lWHDKqYVXlDpoKCqtMQpPA1VjAHGkiQL4f+LNhzH0qSUg0f1MX4gA7CCistmEsdMXZPT1HiXzF4zrIYOu4JqdpykGAi0t7f721m/aTUFGABgYNum6rjcjBOIGvXVJnemtYwuZEyibE100knSTQeRHSluNFER1lJiyHLScazrxDAi2jG9RcZb/wOk7YKcXfDceJskQEnN72raL5uJgInIGnZNjZmOfffjFLAJQf6hFUEy+y2MFNPQ09MJnkKMZrQRUZlWeoKC7lqfPMEUiiJZNlOGMx2Mw6FTiFBTuqrpurt2plMwK3wqbRpITzuabI+WnJHwo8lklTK7hO9ukgbZJWny6MSI6Fh9JU1OY7wcRBxPsyrDYRmpM8Kt4DZNxo3aLMNupHR9Rrgqcdusm0+VkxUZkLW+GtIS5smHl+EFWmJCQZrhuTCPQgoLFWlGuDc1zbaphDAYAgxkeBYAfkbY1uka2SMa0rPtC7XRtB2szAwaOR7OLlDuXjOy1ShQkmnA8zwdhCGFFoQgplmWgfcLeZwh66T1jwN2YOztNpKT+cEuz2nQ5TlFLsggAMrgCrC8IG+zN++RxbbmYL+GVL+tNRnk0mZhfytOJ5Fm5RZ4dpaePN6YdZ/ueQ6UjN6oC/NgUdb1GpTeG8mH8xbNhWHAAgGQ8yoHd4AV90a9cKG3+Nyco5HPSy4fefvoJ3c7+u70/tC/7yEwd9TJ48nP8XZ5ck7tqTUPL5EPXFlYEUl79vPg6Dy4Ew/0BY/t7kblaw8f7PvR+8GypQMd+Iuzv3XvTi/4pmTNlVO9X545t1Us/z3wytbu+fKtC7ee/Kx0eY2e+9KvP7ewbz0FBr098tL61u0vrL3e0h++/tcl743WlkW5V2Fd6cBA4d6HX3xv7+nHTvR29h+aN/ja81yL2R0JfP8nX70kxh4r44+UHFh4653jg2XLdn0K2f2X9n114aO6+d7DwjO3w7/sLbrWB89ue79lVXWw/1A3OJL37KurDr58/vXvWs9sWXnz2OM3ond3XSw+827Zm8tOLrqWrlr7MQwV3b558MM7dW983cuc955wirdevPzEt8VXqQWDQ9P3N99XaxzpEAAA'
     }
   }).then(function(res) {
     console.log(res.data)
@@ -110,8 +114,10 @@ app.controller("StoreController", ['$http', function($http) {
   }, function(err) {
     console.error(err);
   })
-  this.getEbayItems(); //runs the function immediately when the store template is rendered
+  this.getEbayItems(); //runs the function immediately
 }]); //end of the Store controller
+
+
 
 
 app.controller("InfoController", ['$http', function($http) {
@@ -161,11 +167,28 @@ app.controller("InfoController", ['$http', function($http) {
 
 }]);
 
-app.controller("RegisterController", ['$http', function($http) {
+
+
+
+app.controller("SessionController", ['$http', function($http) {
   this.register = function() {
     const makeBackendCall = $http({
       method: 'POST',
       url: 'http://localhost:9292/users/register'
+    })
+  }
+
+    this.login = function() {
+    const makeAjaxCall = $http({
+      method: 'POST',
+      url: 'http://localhost:9292/users/login',
+      headers:{
+
+      }
+    }).then(function(res) {
+      console.log(res)
+    }, function(err) {
+      console.error(err)
     })
   }
 }]);
