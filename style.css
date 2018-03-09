@@ -28,13 +28,10 @@ li{
   margin-bottom: 50px;
 }
 
-.flexcontainer{
-  display: flex;
-  flex-wrap: wrap;
-}
 
 .coin{
- flex-grow: 100;
+ display: inline-block;
+ margin: 50px;
 }
 
 .register {

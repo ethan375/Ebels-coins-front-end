@@ -115,45 +115,49 @@ app.controller("StoreController", ['$http', function($http) {
 
 
 app.controller("InfoController", ['$http', function($http) {
-  this.imgSrc = "https://en.wikipedia.org/wiki/Half_cent_(United_States_coin)#/media/File:Half_cent_obv.jpg"
+  this.imgSrc = "http://www.coinfacts.com/half_cents/1804_half_cents/1804_half_cent_c3_obv.jpg"
   
-  this.largeCent = "https://en.wikipedia.org/wiki/Large_cent#/media/File:1817_Large_cent_obverse.jpg"
+  this.largeCent = "http://imagehost.vendio.com/a/35113942/aview/0502z2.jpg"
 
-  this.smallCent = "https://upload.wikimedia.org/wikipedia/commons/e/ec/NNC-US-1858-1C-Flying_Eagle_Cent.jpg"
+  this.smallCent = "https://cdn.coinvalues.com/original/8f/93/f0/1857-flying-eagle-cent-41-1423321604.jpg"
 
-  this.nickels = "https://en.wikipedia.org/wiki/Liberty_Head_nickel#/media/File:NNC-US-1883-5C-Liberty_Nickel_(no_cents).jpg"
+  this.twoCents = 'http://www.eyeappealingcoins.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/7/6/7612-o.jpg'
 
-  this.halfDimes = "https://upload.wikimedia.org/wikipedia/commons/2/2b/1794_half_dime_obv.jpg"
+  this.threeCents = 'http://ngccoin-production.s3.amazonaws.com/coin-grading-guide/Three-Cent-Silvers-Obverse.jpg'
 
-  this.dimes = "https://en.wikipedia.org/wiki/Mercury_dime#/media/File:1943D_Mercury_Dime_obverse.jpg"
+  this.nickels = "http://i.ebayimg.com/00/s/NTAwWDQ5MQ==/z/BkIAAOxyeZNTVhC~/$_3.JPG?set_id=2"
 
-  this.twentyCents = "https://en.wikipedia.org/wiki/Twenty-cent_piece_(United_States_coin)#/media/File:1876-CC_20C_(obv).jpg"
+  this.halfDimes = "http://www.images-apmex.com/images/Catalog%20Images/Products/89585_Obv.jpg?v=20150428030235&width=900&height=900"
 
-  this.quarters = "https://en.wikipedia.org/wiki/Standing_Liberty_quarter#/media/File:1916_Standing_Liberty_quarter_obverse_1.png"
+  this.dimes = "https://s3.amazonaws.com/ngccoin-production/us-coin-explorer/1898957-014o.jpg"
 
-  this.halfDollars = "https://en.wikipedia.org/wiki/Barber_coinage#/media/File:1914_Barber_Dime_NGC_MS64plus_Obverse.png"
+  this.twentyCents = "https://www.coincommunity.com/forum/uploaded/carlanga/20160131_1_opt-_3_.jpg"
 
-  this.silverDollar = "https://en.wikipedia.org/wiki/1804_dollar#/media/File:1804_dollar_type_I_obverse.jpeg"
+  this.quarters = "http://www.coinfacts.com/silver_dollars/1804_dollars/childs_1804_dollar_obverse.JPG"
 
-  this.modernDollar = "https://en.wikipedia.org/wiki/Susan_B._Anthony_dollar#/media/File:1981-S_SBA$_Type_Two_Deep_Cameo.jpg"
+  this.halfDollars = "http://www.images-apmex.com/images/Catalog%20Images/Products/5339_Obv.jpg?v=20160222103746&width=900&height=900"
 
-  this.tradeDollar = "https://en.wikipedia.org/wiki/Trade_dollar_(United_States_coin)#/media/File:1884_T$1_Trade_Dollar_(Judd-1732).jpg"
+  this.silverDollar = "http://www.coinfacts.com/silver_dollars/draped_bust_dollars/1802_silver_dollars/1802_silver_dollar_obv.jpg"
 
-  this.goldDollar = "https://en.wikipedia.org/wiki/Gold_dollar#/media/File:NNC-US-1849-G$1-Liberty_head_(Ty1).jpg"
+  this.modernDollar = "http://i.ebayimg.com/images/i/141426368630-0-1/s-l1000.jpg"
 
-  this.goldQuarter = "some placeholder until I get ahold of the book"
+  this.tradeDollar = "https://apmex.exceda.com/images/Catalog%20Images/Products/75819_Obv.jpg?v=20130101120000&width=900&height=900"
 
-  this.threeDollaGold = "https://en.wikipedia.org/wiki/Three-dollar_piece#/media/File:NNC-US-1854-G$3-Indian_Princess_Head.jpg"
+  this.goldDollar = "http://image.invaluable.com/housePhotos/eppli/85/577485/H2953-L83870329.jpg"
 
-  this.fourDollaGold = "https://en.wikipedia.org/wiki/Stella_(United_States_coin)#/media/File:NNC-US-1880-G$4-Stella_Pattern_(Coiled_Hair).jpg"
+  this.goldQuarter = "https://www.bullionbypost.co.uk/media/uploads/images/2015/03/08/jqb_0018.JPG"
 
-  this.goldHalfEagle = "https://en.wikipedia.org/wiki/Half_eagle#/media/File:NNC-US-1795-G$5-Turban_Head_(small_eagle).jpg"
+  this.threeDollaGold = "http://www.westcoastcoinsoregon.com/media/catalog/product/3/1/31416770_a.jpg"
 
-  this.tenGoldEagle = "https://en.wikipedia.org/wiki/American_Gold_Eagle#/media/File:Liberty_$50_Obverse.png"
+  this.fourDollaGold = 'https://whitman.com/RedBook/images/strike/250/250-04dG_1880_Flowing_o.jpg'
 
-  this.goldDoubleEagle = "https://en.wikipedia.org/wiki/Double_eagle#/media/File:NNC-US-1849-G$20-Liberty_Head_(Twenty_D.).jpg"
+  this.goldHalfEagle = "http://www.images-apmex.com/images/Catalog%20Images/Products/68917_Slab.jpg?v=20130101120000&width=900&height=900"
 
-  this.commerative = "https://en.wikipedia.org/wiki/Modern_United_States_commemorative_coins#/media/File:86_Ellis_Island.jpg"
+  this.tenGoldEagle = "https://apmex.exceda.com/images/Catalog%20Images/Products/22227_Obv.jpg?v=20130101120000&width=900&height=900"
+
+  this.goldDoubleEagle = "http://cdn.bgasc.com/images/uploads/GPRE33_20_ST_JLY-01-popup.jpg"
+
+  this.commerative = "https://upload.wikimedia.org/wikipedia/commons/e/ed/Lafayette_dollar_obverse.jpg"
 
 }]);
 
