@@ -12,8 +12,9 @@ li{
 }
 
 .login{
-  margin-left: 1000px;
-  margin-right: 20px;
+  float: right;
+/*  margin-left: 1000px;
+  margin-right: 20px;*/
   border: 1px solid blue; 
 }
 
@@ -38,4 +39,10 @@ li{
   margin-left: 500px;
   margin-right: 500px;
   border: 1px solid blue;
+}
+
+.halfcent{
+ display: inline-block;
+ margin: 50px;
+}
 }

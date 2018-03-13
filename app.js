@@ -18,10 +18,14 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: './views/register.html',
     controller: 'SessionController as ses'
   }).when('/halfcent', {
-    templateUrl: './views/'
+    templateUrl: './views/halfCent.html'
   }).when('/largeCent', {
     templateUrl: './views/'
   }).when('/smallCent', {
+    templateUrl: './views/'
+  }).when('/twoCents', {
+    templateUrl: './views/'
+  }).when('/threeCents', {
     templateUrl: './views/'
   }).when('/nickels', {
     templateUrl: './views/'
@@ -56,6 +60,17 @@ app.config(['$routeProvider', function($routeProvider) {
   }).when('/goldDoubleEagle', {
     templateUrl: './views/'
   }).when('/commerative', {
+    templateUrl: './views/'
+  }).when('/1', {
+    templateUrl: './views/halfright.html',
+    controller: 'InfoController as inf'
+  }).when('/2', {
+    templateUrl: './views'
+  }).when('/3', {
+    templateUrl: './views/'
+  }).when('/4', {
+    templateUrl: './views/'
+  }).when('/5', {
     templateUrl: './views/'
   })
 }]);
@@ -104,12 +119,12 @@ app.controller("StoreController", ['$http', function($http) {
   this.getEbayItems = function() {}
   const makeAjaxCall = $http({
     method: 'GET',
-    url: 'https://api.ebay.com/buy/browse/v1/item_summary/search?category_ids=108765&q=Beatles&filter=price:[200..500]&filter=priceCurrency:USD&limit=10',
+    url: 'https://api.ebay.com/buy/browse/v1/item_summary/search?q=1909limit=10',
     headers:{
-      'Authorization': 'Bearer v^1.1#i^1#I^3#p^3#f^0#r^0#t^H4sIAAAAAAAAAOVXW2wUVRjutttirUgCDTRQZBmoRHB2z5nZmd0Z2w0rhVBT2m233NXmzMyZdtrZmc3MbNuNSpoG8RIhPoARpKEKqQFNCg8QTDBoTCPxEgRD8MFg4MFK8EFN44WQ4JnthW3VlrY8NHGTyWb+89++73znzDmgs6Bw9Z6Ne/6Y65mT29MJOnM9HlgECgvy1zyal7s4PwdkOXh6Old2ervyfiq3UUJPivXYTpqGjX0dCd2wxYyxgkpZhmgiW7NFAyWwLTqyGI9uqhYZPxCTlumYsqlTvqrKCooJKxIvyRxQJZVnGECsxkjOBrOCCgoKRIoSwmxQUQXojtt2ClcZtoMMh8QDGKYBSwOhAXAiFEQO+sNscAfl24ItWzMN4uIHVCTTrpiJtbJ6nbhVZNvYckgSKlIV3RCvjVZVrq9pKA9k5YoM8xB3kJOyx76tMxXs24L0FJ64jJ3xFuMpWca2TQUiQxXGJhWjI81Mo/0M1ZICBQQAGxIEDEFIeiBUbjCtBHIm7sO1aAqtZlxFbDiak56MUcKG1IJlZ/ithqSoqvS5f3UppGuqhq0Kav3T0e2b4+vrKV88FrPMNk3BiosU8iDEgTAHBSqCnWaEJdzIDhcZyjRM8bgq60xD0VzCbF+N6TyNScd4PC8gixfiVGvUWlHVcbvJ9guN8gd3uBM6NIMpp9lw5xQnCAm+zOvk7I/I4Z4AHpQgGE7ADKfAoMwCOSwE/1UQ7lqfoigi7rxEY7GA2wuWUJpOIKsVO0kdyZiWCb2pBLY0RWQ5lWHDKqYVXlDpoKCqtMQpPA1VjAHGkiQL4f+LNhzH0qSUg0f1MX4gA7CCistmEsdMXZPT1HiXzF4zrIYOu4JqdpykGAi0t7f721m/aTUFGABgYNum6rjcjBOIGvXVJnemtYwuZEyibE100knSTQeRHSluNFER1lJiyHLScazrxDAi2jG9RcZb/wOk7YKcXfDceJskQEnN72raL5uJgInIGnZNjZmOfffjFLAJQf6hFUEy+y2MFNPQ09MJnkKMZrQRUZlWeoKC7lqfPMEUiiJZNlOGMx2Mw6FTiFBTuqrpurt2plMwK3wqbRpITzuabI+WnJHwo8lklTK7hO9ukgbZJWny6MSI6Fh9JU1OY7wcRBxPsyrDYRmpM8Kt4DZNxo3aLMNupHR9Rrgqcdusm0+VkxUZkLW+GtIS5smHl+EFWmJCQZrhuTCPQgoLFWlGuDc1zbaphDAYAgxkeBYAfkbY1uka2SMa0rPtC7XRtB2szAwaOR7OLlDuXjOy1ShQkmnA8zwdhCGFFoQgplmWgfcLeZwh66T1jwN2YOztNpKT+cEuz2nQ5TlFLsggAMrgCrC8IG+zN++RxbbmYL+GVL+tNRnk0mZhfytOJ5Fm5RZ4dpaePN6YdZ/ueQ6UjN6oC/NgUdb1GpTeG8mH8xbNhWHAAgGQ8yoHd4AV90a9cKG3+Nyco5HPSy4fefvoJ3c7+u70/tC/7yEwd9TJ48nP8XZ5ck7tqTUPL5EPXFlYEUl79vPg6Dy4Ew/0BY/t7kblaw8f7PvR+8GypQMd+Iuzv3XvTi/4pmTNlVO9X545t1Us/z3wytbu+fKtC7ee/Kx0eY2e+9KvP7ewbz0FBr098tL61u0vrL3e0h++/tcl743WlkW5V2Fd6cBA4d6HX3xv7+nHTvR29h+aN/ja81yL2R0JfP8nX70kxh4r44+UHFh4653jg2XLdn0K2f2X9n114aO6+d7DwjO3w7/sLbrWB89ue79lVXWw/1A3OJL37KurDr58/vXvWs9sWXnz2OM3ond3XSw+827Zm8tOLrqWrlr7MQwV3b558MM7dW983cuc955wirdevPzEt8VXqQWDQ9P3N99XaxzpEAAA'
+      'Authorization': 'Bearer v^1.1#i^1#r^0#p^3#f^0#I^3#t^H4sIAAAAAAAAAOVXW2wUVRju9oaVVoWiXIS4DiKJZHbPmdvujt0N21uo0nbpFoKtpDk7c6YdmZ3ZzDnbdoPE2hge8AKBxAsPUgHRChibCAkXSdRITIgQA1EBrZAYo74IahQTQpzZXtjWCLTloYn7splz/tv3/d85Mz/oKS55bNOKTX+VeWbk9/WAnnyPB84EJcVFy+4pyF9QlAdyDDx9PY/0FPYW/FRBUNJIyU2YpCyTYG930jCJnF0MM2nblC1EdCKbKImJTBU5Hq1fKXM+IKdsi1qKZTDeuuowo0EeSArUMBdUsMJxzqo5ErPZCjNBjAMJyAU1XgMcVIGzT0ga15mEIpOGGQ7AIAt4FoSaoShDKEPgE4RQC+Ndg22iW6Zj4gNMJFuunPW1c2q9eamIEGxTJwgTqYvWxhujddU1Dc0V/pxYkWEe4hTRNBn7VGWp2LsGGWl88zQkay3H04qCCWH8kaEMY4PK0ZFiJlF+lmo+gCAKIsQjSUAIS3eEylrLTiJ68zrcFV1ltaypjE2q08ytGHXYSDyDFTr81OCEqKv2un+r0sjQNR3bYaamMvrU6nhNE+ONx2K21amrWHWRQlEUOVEKwBATwQlsEGqjTmzoZrti6SYZTjcUc5jscfmqLFPVXeqIt8GildipHY9nCOQw5Bg1mo12VKNuXbl2gVEmhRa3tUO9TNMO0+0uTjp0eLOPt+7DiDBuSOFOSUOEQQElgAQ4LqAAKORIwz3rk5ZHxO1QNBbzu7XgBMqwSWSvxzRlIAWzikNvOoltXZV5UeP4oIZZVQpprBDSNDYhqhLrXAwYYJxIKKHg/08llNp6Ik3xqFLGb2Shhpm4YqVwzDJ0JcOMN8neP8O66CZhpoPSlOz3d3V1+bp4n2W3+zkAoH9t/cq40oGTiBm11W9tzOpZ0SrY8SK6TDMpp5puR4BOcrOdifC2GkM2zcSx4fI6It8xtUXGr/4HSOKCnF7wXH/iBEAp3eeq26dYSb+FnNPsLrVlK/bejpGfOAT5hs6GE9lnY6RappGZjPMEfHSz0xGVZWeGE7pnfUJJRwNMwAcpipU26WQwDrtOwENLG5puGO7ZmUzCHPeJlGkiI0N1hYymnJLwo6lUnTq9hI9pBzKdO5MduTfZWFM1K6iapAhIlFhe40SsIG1KuFXcqSu4TZ9m2M20YUwJVzXunAb9dM56ZGxPNVFRnZc/m8CS8wrmpBCb4AICy0liUEIBlYdqYkq469unWyshFALOVMFJPADSlLBVGbpzRzRnptsbaoVFKFanBs35UJxeoNy7ZuSqUWFCYYEkSawAAyobCgmY5XkO3i7kcQs5X1r/+tT2j514I3nZH+z1HAS9ngFnaAZ+sAQuBg8XF6wuLChdQHSKfTrSfERvN51Bzsa+9TiTQrqdX+xpXfhBf1vOjN23DswbnbJLCuDMnJEbLLyxUwTvnVsGg4AHIShCCEELWHxjtxA+UDgHzN28/bNFJ06d6a+NPqteq1qqeOOgbNTI4ynKK+z15LGntpz7YdWJ2cd3yHnls/78/jn+8u6Dywf2GH9kvhmIb/j96rsHyj7/7kxf/8UXrhw6P9DkhesH/25d+cYnXx/4tHTn5WPg7FcN5XN3nb5UcKHv0R/DFxrP4/nl15bMnrP78egXgbuMGU0PHtizV17y4bmT789fxB7Z/1vrW08IyT0bl85euyMevT/hr70UqHxnw65lW5cdKQu0/Xq04tqTXz59tfzV/W39L20tL6ujz9cMwtf3V7y4Zl7mvUvnv73+dmns5fY2e1/l3ftOXinpbvto81lBvC/Q+so2+svOzPKHZsUOa9d9r23+eNuCvce2hAffZMrCx8XSwxcHj/p3nFnbf7q3sGSjuM5qqf/Zf2ioff8A63qkyP0QAAA='
     }
   }).then(function(res) {
-    console.log(res.data)
+    console.log(res);
     controller.items = res.data
   }, function(err) {
     console.error(err);
@@ -165,6 +180,8 @@ app.controller("InfoController", ['$http', function($http) {
 
   this.commerative = "https://upload.wikimedia.org/wikipedia/commons/e/ed/Lafayette_dollar_obverse.jpg"
 
+  
+
 }]);
 
 
@@ -175,16 +192,17 @@ app.controller("SessionController", ['$http', function($http) {
     const makeBackendCall = $http({
       method: 'POST',
       url: 'http://localhost:9292/users/register'
+    }).then(function(res) {
+      console.log(res);
+    }, function(err) {
+      console.error(err);
     })
   }
 
     this.login = function() {
     const makeAjaxCall = $http({
       method: 'POST',
-      url: 'http://localhost:9292/users/login',
-      headers:{
-
-      }
+      url: 'http://localhost:9292/users/login'
     }).then(function(res) {
       console.log(res)
     }, function(err) {
