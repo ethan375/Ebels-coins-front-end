@@ -2,7 +2,12 @@
 const app = angular.module('Coinsite', ['ngRoute']);
 
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(function($routeProvider, $httpProvider) {
+
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+
   $routeProvider
   .when('/store', {
     templateUrl: './views/store.html',
@@ -72,8 +77,10 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: './views/'
   }).when('/5', {
     templateUrl: './views/'
+  }).otherwise({
+    templateUrl: './views/info.html'
   })
-}]);
+});
 
 
 
@@ -121,7 +128,7 @@ app.controller("StoreController", ['$http', function($http) {
     method: 'GET',
     url: 'https://api.ebay.com/buy/browse/v1/item_summary/search?q=1909limit=10',
     headers:{
-      'Authorization': 'Bearer v^1.1#i^1#r^0#p^3#f^0#I^3#t^H4sIAAAAAAAAAOVXW2wUVRju9oaVVoWiXIS4DiKJZHbPmdvujt0N21uo0nbpFoKtpDk7c6YdmZ3ZzDnbdoPE2hge8AKBxAsPUgHRChibCAkXSdRITIgQA1EBrZAYo74IahQTQpzZXtjWCLTloYn7splz/tv3/d85Mz/oKS55bNOKTX+VeWbk9/WAnnyPB84EJcVFy+4pyF9QlAdyDDx9PY/0FPYW/FRBUNJIyU2YpCyTYG930jCJnF0MM2nblC1EdCKbKImJTBU5Hq1fKXM+IKdsi1qKZTDeuuowo0EeSArUMBdUsMJxzqo5ErPZCjNBjAMJyAU1XgMcVIGzT0ga15mEIpOGGQ7AIAt4FoSaoShDKEPgE4RQC+Ndg22iW6Zj4gNMJFuunPW1c2q9eamIEGxTJwgTqYvWxhujddU1Dc0V/pxYkWEe4hTRNBn7VGWp2LsGGWl88zQkay3H04qCCWH8kaEMY4PK0ZFiJlF+lmo+gCAKIsQjSUAIS3eEylrLTiJ68zrcFV1ltaypjE2q08ytGHXYSDyDFTr81OCEqKv2un+r0sjQNR3bYaamMvrU6nhNE+ONx2K21amrWHWRQlEUOVEKwBATwQlsEGqjTmzoZrti6SYZTjcUc5jscfmqLFPVXeqIt8GildipHY9nCOQw5Bg1mo12VKNuXbl2gVEmhRa3tUO9TNMO0+0uTjp0eLOPt+7DiDBuSOFOSUOEQQElgAQ4LqAAKORIwz3rk5ZHxO1QNBbzu7XgBMqwSWSvxzRlIAWzikNvOoltXZV5UeP4oIZZVQpprBDSNDYhqhLrXAwYYJxIKKHg/08llNp6Ik3xqFLGb2Shhpm4YqVwzDJ0JcOMN8neP8O66CZhpoPSlOz3d3V1+bp4n2W3+zkAoH9t/cq40oGTiBm11W9tzOpZ0SrY8SK6TDMpp5puR4BOcrOdifC2GkM2zcSx4fI6It8xtUXGr/4HSOKCnF7wXH/iBEAp3eeq26dYSb+FnNPsLrVlK/bejpGfOAT5hs6GE9lnY6RappGZjPMEfHSz0xGVZWeGE7pnfUJJRwNMwAcpipU26WQwDrtOwENLG5puGO7ZmUzCHPeJlGkiI0N1hYymnJLwo6lUnTq9hI9pBzKdO5MduTfZWFM1K6iapAhIlFhe40SsIG1KuFXcqSu4TZ9m2M20YUwJVzXunAb9dM56ZGxPNVFRnZc/m8CS8wrmpBCb4AICy0liUEIBlYdqYkq469unWyshFALOVMFJPADSlLBVGbpzRzRnptsbaoVFKFanBs35UJxeoNy7ZuSqUWFCYYEkSawAAyobCgmY5XkO3i7kcQs5X1r/+tT2j514I3nZH+z1HAS9ngFnaAZ+sAQuBg8XF6wuLChdQHSKfTrSfERvN51Bzsa+9TiTQrqdX+xpXfhBf1vOjN23DswbnbJLCuDMnJEbLLyxUwTvnVsGg4AHIShCCEELWHxjtxA+UDgHzN28/bNFJ06d6a+NPqteq1qqeOOgbNTI4ynKK+z15LGntpz7YdWJ2cd3yHnls/78/jn+8u6Dywf2GH9kvhmIb/j96rsHyj7/7kxf/8UXrhw6P9DkhesH/25d+cYnXx/4tHTn5WPg7FcN5XN3nb5UcKHv0R/DFxrP4/nl15bMnrP78egXgbuMGU0PHtizV17y4bmT789fxB7Z/1vrW08IyT0bl85euyMevT/hr70UqHxnw65lW5cdKQu0/Xq04tqTXz59tfzV/W39L20tL6ujz9cMwtf3V7y4Zl7mvUvnv73+dmns5fY2e1/l3ftOXinpbvto81lBvC/Q+so2+svOzPKHZsUOa9d9r23+eNuCvce2hAffZMrCx8XSwxcHj/p3nFnbf7q3sGSjuM5qqf/Zf2ioff8A63qkyP0QAAA='
+      'Authorization': 'Bearer '
     }
   }).then(function(res) {
     console.log(res);
@@ -191,7 +198,7 @@ app.controller("SessionController", ['$http', function($http) {
   this.register = function() {
     const makeBackendCall = $http({
       method: 'POST',
-      url: 'http://localhost:9292/users/register'
+      url: 'http://localhost:9292/users/register',
     }).then(function(res) {
       console.log(res);
     }, function(err) {
