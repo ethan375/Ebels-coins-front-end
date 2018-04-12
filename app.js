@@ -2,11 +2,7 @@
 const app = angular.module('Coinsite', ['ngRoute']);
 
 
-app.config(function($routeProvider, $httpProvider) {
-
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+app.config(function($routeProvider) {
 
   $routeProvider
   .when('/store', {
@@ -86,12 +82,10 @@ app.config(function($routeProvider, $httpProvider) {
 
 
 app.controller("ForumController", ['$http', function ($http){
-  this.username = '';
-  this.password = '';
   controller = this;
 
   this.getComments = function() {
-    const makeAjaxCall = $http({
+    $http({
       method:'GET',
       url: 'http://localhost:9292/comments'
     }).then(function(res) {
@@ -104,10 +98,15 @@ app.controller("ForumController", ['$http', function ($http){
   this.getComments() //runs the function immediately
 
   this.newPost = function() {
-    const makePostRequest = $http({
+    $http({
       method: 'POST',
-      url: 'http://localhost:9292/comments'
+      url: 'http://localhost:9292/comments',
+      data: {
+
+        comment: controller.comment
+      }
     }).then(function(res) {
+      // console.log(controller)
       console.log(res);
     }, function(err) {
       console.error(err);
@@ -195,14 +194,24 @@ app.controller("InfoController", ['$http', function($http) {
 
 
 app.controller("SessionController", ['$http', function($http) {
+  controller = this;
+
   this.register = function() {
     const makeBackendCall = $http({
       method: 'POST',
       url: 'http://localhost:9292/users/register',
+      data: {
+        username: controller.username,
+        password: controller.password
+      },
     }).then(function(res) {
+      console.log(controller)
       console.log(res);
+      console.log(this)
     }, function(err) {
       console.error(err);
+      console.log(controller)
+      console.log(this)
     })
   }
 
