@@ -90,6 +90,7 @@ app.controller("ForumController", ['$http', function ($http){
       url: 'http://localhost:9292/comments'
     }).then(function(res) {
       // console.log(res.data);
+      // console.log(controller);
       controller.comments = res.data;
     }, function(err) {
       console.error(err);
@@ -102,15 +103,15 @@ app.controller("ForumController", ['$http', function ($http){
       method: 'POST',
       url: 'http://localhost:9292/comments',
       data: {
-
-        comment: controller.comment
+        body: controller.comment
       }
     }).then(function(res) {
       // console.log(controller)
-      console.log(res);
+      // console.log(res);
     }, function(err) {
       console.error(err);
     })
+    setTimeout(this.getComments(), 3000)
   }
 
 }]); //end forum controller
@@ -201,8 +202,8 @@ app.controller("SessionController", ['$http', function($http) {
       method: 'POST',
       url: 'http://localhost:9292/users/register',
       data: {
-        username: controller.username,
-        password: controller.password
+        username: "controller.username",
+        password: "controller.password"
       },
     }).then(function(res) {
       console.log(controller)
@@ -210,15 +211,19 @@ app.controller("SessionController", ['$http', function($http) {
       console.log(this)
     }, function(err) {
       console.error(err);
-      console.log(controller)
-      console.log(this)
+      console.log(controller);
+      console.log(this);
     })
   }
 
     this.login = function() {
     const makeAjaxCall = $http({
       method: 'POST',
-      url: 'http://localhost:9292/users/login'
+      url: 'http://localhost:9292/users/login',
+      data: {
+        username: 'controller.username',
+        password: 'controller.password'
+      }
     }).then(function(res) {
       console.log(res)
     }, function(err) {
