@@ -1,8 +1,8 @@
 <header>
 <section ng-controller="SessionController as ses">
   <form ng-submit="ses.login()" class="login">
-    Username:<input type="text"> <br />
-    Password:<input type="text"> <br />
+    Username:<input type="text" ng-model=ses.username> <br />
+    Password:<input type="password" ng-model=ses.password> <br />
     Not a member? Register <a href="/#!/register">Here</a>
     <button>Login</button>
   </form>

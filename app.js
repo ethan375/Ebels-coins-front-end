@@ -110,8 +110,7 @@ app.controller("ForumController", ['$http', function ($http){
       // console.log(res);
     }, function(err) {
       console.error(err);
-    })
-    setTimeout(this.getComments(), 3000)
+    }).then(this.getComments())
   }
 
 }]); //end forum controller
@@ -202,17 +201,17 @@ app.controller("SessionController", ['$http', function($http) {
       method: 'POST',
       url: 'http://localhost:9292/users/register',
       data: {
-        username: "controller.username",
-        password: "controller.password"
+        username: controller.username,
+        password: controller.password
       },
     }).then(function(res) {
-      console.log(controller)
       console.log(res);
-      console.log(this)
+      // console.log(controller)
+      // console.log(this)
     }, function(err) {
       console.error(err);
-      console.log(controller);
-      console.log(this);
+      // console.log(controller);
+      // console.log(this);
     })
   }
 
@@ -221,8 +220,8 @@ app.controller("SessionController", ['$http', function($http) {
       method: 'POST',
       url: 'http://localhost:9292/users/login',
       data: {
-        username: 'controller.username',
-        password: 'controller.password'
+        username: controller.username,
+        password: controller.password
       }
     }).then(function(res) {
       console.log(res)
